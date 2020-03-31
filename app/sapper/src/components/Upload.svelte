@@ -185,7 +185,7 @@ async function goNext(){
          
           if(res.data.getWeight==null || res.data.getWeight.length<=0 ){
 
-            warning2 = true
+            warning2 =  true
           }else{
             
            
@@ -423,15 +423,16 @@ function clearAll(){
    {/if}
 
     {#if componentsActive[1]}
-    {#if warning2}
-    <div class="box has-background-danger has-text-white has-text-weight-bold"> 
-    Some of the Degrees in the Database do not have default weight associated with 
-    this course. Please cancel the upload and add the required fields for the course.</div>
-    {/if}
+    
 
     
         
         {#if review.length>0}
+        {#if warning2}
+      <div class="box has-background-warning has-text-white"> 
+      Some of the Degrees in the Database do not have default weight associated with 
+      this course. This could potentially affect the upload of students.</div>
+      {/if}
         <div class="box has-background-warning">
         <p>The following students are not in the current database:</p>
         <p>Please provide additional data for each of them before submiting grades.</p>
@@ -510,7 +511,7 @@ function clearAll(){
     {#if componentsActive[0]}
     <button class="button is-success" on:click={() => checkGuids()}>Upload</button>
     {/if}
-    {#if componentsActive[1] && !warning2}
+    {#if componentsActive[1]}
     <button class="button is-success" on:click={() => goNext()}>Next</button>
     {/if}
     {#if componentsActive[2]}
